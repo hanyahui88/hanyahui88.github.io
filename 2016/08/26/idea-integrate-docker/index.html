@@ -86,7 +86,7 @@
 <link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="docker,idea,部署,centos," />
 
 
 
@@ -102,15 +102,24 @@
 
 
 
-<meta name="description" content="想一夜暴富的程序猿">
-<meta property="og:type" content="website">
-<meta property="og:title" content="alvin blog">
-<meta property="og:url" content="http://hanyahui88.github.io/archives/2015/index.html">
+<meta name="description" content="开启docker的remote api 修改配置文件 vim /etc/sysconfig/docker 修改 OPTIONS=’–selinux-enabled –log-driver=journald’ 为 OPTIONS=’–selinux-enabled –log-driver=journald -H tcp://0.0.0.0:4243 -H unix:///run/docker.so">
+<meta property="og:type" content="article">
+<meta property="og:title" content="idea 部署项目到docker中(centos)">
+<meta property="og:url" content="http://hanyahui88.github.io/2016/08/26/idea-integrate-docker/index.html">
 <meta property="og:site_name" content="alvin blog">
-<meta property="og:description" content="想一夜暴富的程序猿">
+<meta property="og:description" content="开启docker的remote api 修改配置文件 vim /etc/sysconfig/docker 修改 OPTIONS=’–selinux-enabled –log-driver=journald’ 为 OPTIONS=’–selinux-enabled –log-driver=journald -H tcp://0.0.0.0:4243 -H unix:///run/docker.so">
+<meta property="og:image" content="http://hanyahui88.github.io/path/to/20161017140753.png">
+<meta property="og:image" content="http://hanyahui88.github.io/path/to/6631544953747099030.png">
+<meta property="og:image" content="http://hanyahui88.github.io/path/to/6631663701002913845.png">
+<meta property="og:image" content="http://hanyahui88.github.io/path/to/6631588934212220439.png">
+<meta property="og:image" content="http://hanyahui88.github.io/path/to/6631760458026152942.png">
+<meta property="og:image" content="http://hanyahui88.github.io/path/to/6631590033723848213.png">
+<meta property="og:image" content="http://hanyahui88.github.io/path/to/6631715378049415715.png">
+<meta property="og:updated_time" content="2016-10-17T07:17:00.808Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="alvin blog">
-<meta name="twitter:description" content="想一夜暴富的程序猿">
+<meta name="twitter:title" content="idea 部署项目到docker中(centos)">
+<meta name="twitter:description" content="开启docker的remote api 修改配置文件 vim /etc/sysconfig/docker 修改 OPTIONS=’–selinux-enabled –log-driver=journald’ 为 OPTIONS=’–selinux-enabled –log-driver=journald -H tcp://0.0.0.0:4243 -H unix:///run/docker.so">
+<meta name="twitter:image" content="http://hanyahui88.github.io/path/to/20161017140753.png">
 
 
 
@@ -131,10 +140,10 @@
 
 
 
-  <link rel="canonical" href="http://hanyahui88.github.io/archives/2015/"/>
+  <link rel="canonical" href="http://hanyahui88.github.io/2016/08/26/idea-integrate-docker/"/>
 
 
-  <title> 归档 | alvin blog </title>
+  <title> idea 部署项目到docker中(centos) | alvin blog </title>
 </head>
 
 <body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
@@ -165,7 +174,7 @@
     
   
 
-  <div class="container one-collumn sidebar-position-right  page-archive  ">
+  <div class="container one-collumn sidebar-position-right page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="//schema.org/WPHeader">
@@ -286,73 +295,213 @@
           <div id="content" class="content">
             
 
-  <section id="posts" class="posts-collapse">
-    <span class="archive-move-on"></span>
-
-    <span class="archive-page-counter">
-      
-      
-      
-        
-      
-      嗯..! 目前共计 10 篇日志。 继续努力。
-    </span>
-
+  <div id="posts" class="posts-expand">
     
 
-      
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                idea 部署项目到docker中(centos)
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-08-26T17:38:40-04:00" content="2016-08-26">
+              2016-08-26
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/部署/" itemprop="url" rel="index">
+                    <span itemprop="name">部署</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/08/26/idea-integrate-docker/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/26/idea-integrate-docker/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
       
       
 
       
+        <ol>
+<li>开启docker的remote api<br> 修改配置文件<br> vim /etc/sysconfig/docker<br> 修改 OPTIONS=’–selinux-enabled –log-driver=journald’<br> 为 OPTIONS=’–selinux-enabled –log-driver=journald -H tcp://0.0.0.0:4243 -H unix:///run/docker.sock’<a id="more"></a></li>
+<li><p>项目中添加docker-dir文件夹，在文件件中创建Dockerfile文件<br> Dockerfile: </p>
+<pre><code>FROM docker.io/hanyahui88/tomcat:latest
+
+ADD grass-1.0.war /usr/local/tomcat/webapps
+WORKDIR /usr/local/tomcat/webapps
+RUN mv grass-1.0.war grass.war
+</code></pre></li>
+<li>最终的目录结构<br> <img src="/path/to/20161017140753.png" alt="project"><br></li>
+<li>打开idea的setting-&gt;clouds 点击 ，添加docker<br> <img src="/path/to/6631544953747099030.png" alt="project"><br></li>
+<li>打开project Structure ,将output directory 设置成docker-dir<br> <img src="/path/to/6631663701002913845.png" alt="project"><br></li>
+<li>打开Run/Debug Configurations，点击 ，添加Docker Deployment<br> <img src="/path/to/6631588934212220439.png" alt="project"><br></li>
+<li>添加项目（添加output-directory为docker-dir的war）<br> <img src="/path/to/6631760458026152942.png" alt="project"><br></li>
+<li>设置对外的端口<br> <img src="/path/to/6631590033723848213.png" alt="project"><br></li>
+<li>点击运行就ok了<br> <img src="/path/to/6631715378049415715.png" alt="project"><br></li>
+</ol>
+
+      
+    </div>
+
+    <div>
+      
         
-        <div class="collection-title">
-          <h2 class="archive-year motion-element" id="archive-year-2015">2015</h2>
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="/path/to/wechat-reward-image.png" alt="alvin WeChat Pay"/>
+          <p>微信打赏</p>
         </div>
       
       
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="/path/to/alipay-reward-image.png" alt="alvin Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
 
       
+    </div>
 
-  <article class="post post-type-normal" itemscope itemtype="//schema.org/Article">
-    <header class="post-header">
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/docker/" rel="tag">#docker</a>
+          
+            <a href="/tags/idea/" rel="tag">#idea</a>
+          
+            <a href="/tags/部署/" rel="tag">#部署</a>
+          
+            <a href="/tags/centos/" rel="tag">#centos</a>
+          
+        </div>
+      
 
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2015/12/11/nginx-tomcat8-redis/" itemprop="url">
-              
-                <span itemprop="name">nginx-tomcat8-redis 做集群</span>
-              
-            </a>
-        
-      </h1>
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/08/05/liunx-redis/" rel="next" title="liunx 安装redis(centos)">
+                <i class="fa fa-chevron-left"></i> liunx 安装redis(centos)
+              </a>
+            
+          </div>
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2015-12-11T11:54:31-05:00"
-              content="2015-12-11" >
-          12-11
-        </time>
-      </div>
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/08/26/idea-docker/" rel="prev" title="idea 调试发布到docker中的web项目(centos)">
+                idea 调试发布到docker中的web项目(centos) <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
 
-    </header>
+      
+      
+    </footer>
   </article>
 
 
 
-    
-
-  </section>
-
-  
-
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
           
 
+  <p>热评文章</p>
+  <div class="ds-top-threads" data-range="weekly" data-num-items="4"></div>
+
 
           
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/08/26/idea-integrate-docker/"
+           data-title="idea 部署项目到docker中(centos)" data-url="http://hanyahui88.github.io/2016/08/26/idea-integrate-docker/">
+      </div>
+    
+  </div>
+
 
         </div>
         
@@ -372,8 +521,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel  sidebar-panel-active ">
+      <section class="site-overview sidebar-panel ">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="//schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/haizei.jpg"
@@ -452,6 +610,17 @@
 
       </section>
 
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <p class="post-toc-empty">此文章未包含目录</p>
+            
+          </div>
+        </section>
       
 
     </div>
@@ -542,11 +711,9 @@
 
 
   
-  
-    <script type="text/javascript" id="motion.page.archive">
-      $('.archive-year').velocity('transition.slideLeftIn');
-    </script>
-  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.2"></script>
+
 
 
   

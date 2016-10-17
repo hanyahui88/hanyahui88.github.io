@@ -4,63 +4,243 @@
   
     
     <entry>
-      <title><![CDATA[为什么乱码]]></title>
-      <url>http://yoursite.com/2015/04/08/my-new-post/</url>
-      <content type="html"><![CDATA[<p>#这里是正文，用markdown写，你可以选择写一段显示在首页的简介后，加上<br><a id="more"></a>#在<!--more-->之前的内容会显示在首页，</p>
-<p><em>之后的内容会被隐藏</em>，<strong>当游客点击Read more才能看到。</strong><br><br><br><br><br>|tables  |are      |cool     |<br>| ——-|:——-:| ——-:|<br>|col 3   | are neat|    $1   |<br>` <html><br> <head><br>   <meta http-equiv="content-type" content="text/html;charset=utf-8;"><br>   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"><br>   <meta name="robots" content="all"><br>   <meta name="robots" content="index,follow"><br> </head><br> <body></body></html></p>
- <script type="text/javascript" src="http://www.qq.com/404/search_children.js" charset="utf-8" homepageurl="your site url " homepagename="�ص��ҵ���ҳ">
- </script>
+      <title><![CDATA[tomcat 配置https]]></title>
+      <url>http://hanyahui88.github.io/2016/09/21/tomcat-https/</url>
+      <content type="html"><![CDATA[<ol>
+<li>首先是申请证书，可以用java自带的keytool生成证书<br><img src="/path/to/20161017135038.png" alt="keystore"><br><a id="more"></a></li>
+<li><p>找到tomcat目录/conf/server.xml文件</p>
+<p>更改这段代码：</p>
+<p> &lt;–&lt;Connector port=”8443” protocol=”org.apache.coyote.http11.Http11NioProtocol”</p>
+<pre><code>maxThreads=&quot;150&quot; SSLEnabled=&quot;true&quot; scheme=&quot;https&quot; secure=&quot;true&quot;
+clientAuth=&quot;false&quot; sslProtocol=&quot;TLS&quot; /&gt;--&gt;
+</code></pre><p>为：<br></p>
+<p> &lt;Connector port=”8443” protocol=”HTTP/1.1”</p>
+<pre><code>maxThreads=&quot;150&quot; SSLEnabled=&quot;true&quot; scheme=&quot;https&quot; secure=&quot;true&quot;
+clientAuth=&quot;false&quot; sslProtocol=&quot;TLS&quot; 
+keystoreFile=&quot;/.keystore&quot; （keystore文件地址）
+keystorePass=&quot;123456&quot;/&gt;(生成keystore输入的密码)
+</code></pre></li>
+<li>验证<br> 访问<a href="https://localhost:8443" target="_blank" rel="external">https://localhost:8443</a> 验证是否可行</li>
+</ol>
+<p>注：如果希望能通过域名访问，则需要向相关机构申请https证书</p>
+]]></content>
+    </entry>
+    
+    <entry>
+      <title><![CDATA[H5 上传文件]]></title>
+      <url>http://hanyahui88.github.io/2016/09/18/h5-upload/</url>
+      <content type="html"><![CDATA[<p>使用ajax，对带文件的form表单提交（不用使用插件）<br><a id="more"></a></p>
+<pre><code>var formData = new FormData(document.getElementById(&quot;imgForm&quot;));//获取form表单中的所有的数据，封装成formData
+$.ajax({
+    url : &apos;http://localhost/global/upload&apos;,
+    type : &quot;POST&quot;,
+    data :formData,
+    async: false,
+    cache: false,
+    contentType: false,
+    processData: false,
+    success : function(data) {    
+    },
+    error : function(data) {  
+    }
+});
+</code></pre>]]></content>
+    </entry>
+    
+    <entry>
+      <title><![CDATA[powerdesigner添加mysql的字符集支持、设置默认值]]></title>
+      <url>http://hanyahui88.github.io/2016/08/29/powerdesigner-mysql/</url>
+      <content type="html"><![CDATA[<p>powerdesigner添加mysql的字符集支持、设置默认值<br><br>database-&gt;edit current DBMS<br><br><img src="/path/to/3366722196437246315.png" alt="database"><br><a id="more"></a><br>然后，选中：MYSQL50::Script/Objects/Table/Options<br><br>在options末尾添加： <br><br>ENGINE = %s : list = BDB | HEAP | ISAM | InnoDB | MERGE | MRG_MYISAM | MYISAM, default = InnoDB<br><br>DEFAULT CHARACTER SET = %s : list = utf8 | gbk, default = utf8 <br><br>COLLATE = %s : list = utf8_bin | utf8_general_ci | gbk_bin | gbk_chinese_ci, default = utf8_bin<br><br><img src="/path/to/6631673596607633152.png" alt="dbms properties"><br><br>第一个：存储引擎<br><br>第二个：字符集<br><br>第三个：带bin是区分大小写，ci不区分<br><br>点击ok保存，回到工作区，双击某表，在：<br><br>Physicial Options中，可以看到刚刚添加的选项，这样就可以按照自己的方式来操作了。<br><br><img src="/path/to/6631747263886697576.png" alt="Physicial Options"><br><br>打开漏斗选中comment和default value 就可以设置备注和默认值了<br><br><img src="/path/to/6631746164375069821.png" alt="table properties"><br></p>
+]]></content>
+    </entry>
+    
+    <entry>
+      <title><![CDATA[idea 调试发布到docker中的web项目(centos)]]></title>
+      <url>http://hanyahui88.github.io/2016/08/26/idea-docker/</url>
+      <content type="html"><![CDATA[<ol>
+<li>下载docker pull hanyahui88/tomcat  镜像，因为这个镜像开启了5005的调试端口(或者自己下载个tomcat的官方镜像，然后自己开启5005端口，在用这个生成一个镜像)</li>
+<li>打开Run/Debug Configurations，点击 +，添加remote，添加docker中访问tomcat的ip<a id="more"></a><br><img src="/path/to/6631541655212221615.png" alt="setting"><br></li>
+<li>docker中启动tomcat后，idea中启动remote就可以了，在本地打个断点，访问tomcat，可以验证<br>注：代码一定要同步，不然会有出入<br>想看怎么在idea中集成docker请点击：<a href="https://hanyahui88.github.io/2016/10/17/idea-integrate-docker/" title="idea-docker">这里</a></li>
+</ol>
+]]></content>
+    </entry>
+    
+    <entry>
+      <title><![CDATA[idea 部署项目到docker中(centos)]]></title>
+      <url>http://hanyahui88.github.io/2016/08/26/idea-integrate-docker/</url>
+      <content type="html"><![CDATA[<ol>
+<li>开启docker的remote api<br> 修改配置文件<br> vim /etc/sysconfig/docker<br> 修改 OPTIONS=’–selinux-enabled –log-driver=journald’<br> 为 OPTIONS=’–selinux-enabled –log-driver=journald -H tcp://0.0.0.0:4243 -H unix:///run/docker.sock’<a id="more"></a></li>
+<li><p>项目中添加docker-dir文件夹，在文件件中创建Dockerfile文件<br> Dockerfile: </p>
+<pre><code>FROM docker.io/hanyahui88/tomcat:latest
 
-<p> <br> <br> `</p>
+ADD grass-1.0.war /usr/local/tomcat/webapps
+WORKDIR /usr/local/tomcat/webapps
+RUN mv grass-1.0.war grass.war
+</code></pre></li>
+<li>最终的目录结构<br> <img src="/path/to/20161017140753.png" alt="project"><br></li>
+<li>打开idea的setting-&gt;clouds 点击 ，添加docker<br> <img src="/path/to/6631544953747099030.png" alt="project"><br></li>
+<li>打开project Structure ,将output directory 设置成docker-dir<br> <img src="/path/to/6631663701002913845.png" alt="project"><br></li>
+<li>打开Run/Debug Configurations，点击 ，添加Docker Deployment<br> <img src="/path/to/6631588934212220439.png" alt="project"><br></li>
+<li>添加项目（添加output-directory为docker-dir的war）<br> <img src="/path/to/6631760458026152942.png" alt="project"><br></li>
+<li>设置对外的端口<br> <img src="/path/to/6631590033723848213.png" alt="project"><br></li>
+<li>点击运行就ok了<br> <img src="/path/to/6631715378049415715.png" alt="project"><br></li>
+</ol>
 ]]></content>
     </entry>
     
     <entry>
-      <title><![CDATA[为什么乱码1]]></title>
-      <url>http://yoursite.com/2015/04/08/my-new-post1/</url>
-      <content type="html"><![CDATA[<p>#这里是正文，用markdown写，你可以选择写一段显示在首页的简介后，加上<br><a id="more"></a>之前的内容会显示在首页，之后的内容会被隐藏，当游客点击Read more才能看到。</p>
+      <title><![CDATA[liunx 安装redis(centos)]]></title>
+      <url>http://hanyahui88.github.io/2016/08/05/liunx-redis/</url>
+      <content type="html"><![CDATA[<ol>
+<li>安装gcc</li>
+<li>下载redis，并解压</li>
+<li>进去目录，make &amp;&amp; make install</li>
+<li>把${redis_home}/redis.conf 的daemonize no 改成 daemonize yes 后台运行</li>
+<li>进入${redis_home}/src  启动redis   ./redis-server  ../redis.conf 使用配置文件启动</li>
+<li>验证是否已经启动  ps -ef |grep redis </li>
+</ol>
 ]]></content>
     </entry>
     
     <entry>
-      <title><![CDATA[为什么乱码2]]></title>
-      <url>http://yoursite.com/2015/04/08/my-new-post2/</url>
-      <content type="html"><![CDATA[<p>#这里是正文，用markdown写，你可以选择写一段显示在首页的简介后，加上<br><a id="more"></a>#在<!--more-->之前的内容会显示在首页，之后的内容会被隐藏，当游客点击Read more才能看到。</p>
+      <title><![CDATA[使用freemarker导出word]]></title>
+      <url>http://hanyahui88.github.io/2016/08/05/word-freemarker/</url>
+      <content type="html"><![CDATA[<ol>
+<li>先把排版好的word另存为xml格式<br><br><img src="/path/to/6631564744955828577.png" alt="save as"><br><a id="more"></a></li>
+<li>然后把替换的内容使用${}标签替换掉，后缀改成ftl，放到项目中。<br></li>
+<li><p>代码<br></p>
+<pre><code>private static void genWord(Map&lt;String, Object&gt; map) {
+     try {
+         Configuration configuration = new Configuration(new Version(2, 3, 23));
+         configuration.setDefaultEncoding(&quot;UTF-8&quot;);
+         configuration.setClassForTemplateLoading(GenWordUtils.class, &quot;/&quot;); // FTL文件所存在的位置
+         Template template = configuration.getTemplate(&quot;aa.ftl&quot;);
+         File outFile = new File(&quot;D:/doc/&quot; + map.get(&quot;fileName&quot;) + &quot;.doc&quot;);
+         if (!outFile.exists()) {
+             outFile.createNewFile();
+         }
+         Writer out = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(outFile), &quot;UTF-8&quot;));
+         template.process(map, out);
+     } catch (Exception e) {
+         e.printStackTrace();
+     }
+ }
+
+ public static void main(String[] args) {
+     //需要替换的键值
+     Map&lt;String, Object&gt; map = Maps.newHashMap();
+     map.put(&quot;client&quot;, &quot;张三&quot;);
+     map.put(&quot;country&quot;, &quot;中国&quot;);
+     genWord(map);
+ }
+</code></pre></li>
+<li><p>带有图片的word<br><br>另存xml中的把base64编码的图片替换，${pic}两边不能有空格、换行、制表符……，<br></p>
+<pre><code>&lt;w:binData w:name=&quot;wordml://${picName}&quot; xml:space=&quot;preserve&quot;&gt;${pic}&lt;/w:binData&gt;
+</code></pre><p>代码和普通的一样，只不过把图片流变成base64编码放进去就可以了<br></p>
+<pre><code>BASE64Encoder encoder = new BASE64Encoder();
+map.put(&quot;pic&quot;, encoder.encode(IOUtils.toByteArray(new FileInputStream(&quot;d:/a.jpg&quot;))));
+</code></pre></li>
+</ol>
 ]]></content>
     </entry>
     
     <entry>
-      <title><![CDATA[为什么乱码3]]></title>
-      <url>http://yoursite.com/2015/04/08/my-new-post3/</url>
-      <content type="html"><![CDATA[<p>#这里是正文，用markdown写，你可以选择写一段显示在首页的简介后，加上<br><a id="more"></a>#在<!--more-->之前的内容会显示在首页，之后的内容会被隐藏，当游客点击Read more才能看到。</p>
+      <title><![CDATA[使用jenkins+maven+svn持续部署]]></title>
+      <url>http://hanyahui88.github.io/2016/08/04/jenkins-maven-svn/</url>
+      <content type="html"><![CDATA[<ol>
+<li>下载jenkins.war 包，放入tomcat中，浏览器中输入localhost:8080/jenkins</li>
+<li>根据提示找到密码，并输入</li>
+<li>安装插件，svn和maven插件<br><br> a.在线安装<br> <img src="/path/to/6631783547769735330.png" alt="setting"><br><a id="more"></a><br> b. 离线下载，可选网址：<br> <a href="http://mirror.xmission.com/jenkins/plugins" target="_blank" rel="external">http://mirror.xmission.com/jenkins/plugins</a><br> <a href="http://updates.jenkins-ci.org/download/plugins" target="_blank" rel="external">http://updates.jenkins-ci.org/download/plugins</a><br> <a href="https://wiki.jenkins-ci.org/display/JENKINS/Plugins" target="_blank" rel="external">https://wiki.jenkins-ci.org/display/JENKINS/Plugins</a><br> 下载完成后点击选择文件，上传<br><br> <img src="/path/to/6631550451304639277.png" alt="setting"><br><br> c.还可以修改update site <a href="http://mirror.xmission.com/jenkins/updates/current/update-center.json" target="_blank" rel="external">http://mirror.xmission.com/jenkins/updates/current/update-center.json</a></li>
+<li>创建项目<br> a.输入项目名称，选择maven项目，点击ok<br> <img src="/path/to/6631505371327906980.png" alt="setting"><br><br> b.输入svn地址，帐号和密码<br> <img src="/path/to/6631806637513918234.png" alt="setting"><br><br> c.build的时候选择invoke top_level maven targer<br> <img src="/path/to/6631830826769745627.png" alt="setting"><br><br> d:最后点击save 就可以了<br> 项目中pom文件和maven的配置请看:<a href="https://hanyahui88.github.io/2016/08/04/maven-deploy-tomcat/" title="idea-docker">MAVEN自动部署项目到tomcat中</a></li>
+<li>点击项目名称进入详情<br> <img src="/path/to/6631639511746493121.png" alt="setting"><br><br> 点击1 去构建<br> 点击2 去看日志，构建完后，如果项目前面显示的蓝色的球球就是成功了，红的球球就是失败了，可以点击2查看异常</li>
+</ol>
 ]]></content>
     </entry>
     
     <entry>
-      <title><![CDATA[为什么乱码4]]></title>
-      <url>http://yoursite.com/2015/04/08/my-new-post4/</url>
-      <content type="html"><![CDATA[<p>#这里是正文，用markdown写，你可以选择写一段显示在首页的简介后，加上<br><a id="more"></a>#在<!--more-->之前的内容会显示在首页，之后的内容会被隐藏，当游客点击Read more才能看到。</p>
+      <title><![CDATA[maven自动部署项目到tomcat中]]></title>
+      <url>http://hanyahui88.github.io/2016/08/04/maven-deploy-tomcat/</url>
+      <content type="html"><![CDATA[<ol>
+<li><p>项目pom文件配置:</p>
+<pre><code> &lt;build&gt;
+    &lt;finalName&gt;test&lt;/finalName&gt;
+    &lt;outputDirectory&gt;${project.basedir}/target/test&lt;/outputDirectory&gt;
+    &lt;defaultGoal&gt;deploy&lt;/defaultGoal&gt;
+    &lt;plugins&gt;
+        &lt;plugin&gt;
+            &lt;groupId&gt;org.apache.tomcat.maven&lt;/groupId&gt;
+            &lt;artifactId&gt;tomcat7-maven-plugin&lt;/artifactId&gt;
+            &lt;version&gt;2.2&lt;/version&gt;
+            &lt;configuration&gt;
+                &lt;finalName&gt;test&lt;/finalName&gt;
+                &lt;path&gt;/test&lt;/path&gt;
+                &lt;port&gt;8080&lt;/port&gt;
+                &lt;uriEncoding&gt;UTF-8&lt;/uriEncoding&gt;
+                &lt;url&gt;http://localhost:8080/manager/text&lt;/url&gt;
+                &lt;server&gt;tomcat7&lt;/server&gt;
+                &lt;username&gt;tomcat&lt;/username&gt;
+                &lt;password&gt;tomcat&lt;/password&gt;
+            &lt;/configuration&gt;
+        &lt;/plugin&gt;
+    &lt;/plugins&gt;
+&lt;/build&gt;
+</code></pre><a id="more"></a></li>
+<li><p>maven %MAVEN_HOME%/conf/setting.xml文件配置</p>
+<pre><code>&lt;servers&gt;
+     &lt;server&gt;
+         &lt;id&gt;tomcat7&lt;/id&gt;
+         &lt;username&gt;tomcat&lt;/username&gt;
+         &lt;password&gt;tomcat&lt;/password&gt;
+     &lt;/server&gt;
+ &lt;/servers&gt;
+</code></pre></li>
+<li><p>tomcat  %TOMCAT_HOME%/conf/tomcat-users.xml文件配置</p>
+<pre><code>&lt;tomcat-users xmlns=&quot;http://tomcat.apache.org/xml&quot;
+               xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
+               xsi:schemaLocation=&quot;http://tomcat.apache.org/xml tomcat-users.xsd&quot;
+               version=&quot;1.0&quot;&gt;
+     &lt;role rolename=&quot;manager-gui&quot;/&gt;
+     &lt;role rolename=&quot;manager-script&quot;/&gt;
+     &lt;user username=&quot;tomcat&quot; password=&quot;tomcat&quot; roles=&quot;manager-gui,manager-script,manager-jmx,manager-status&quot;/&gt;
+&lt;/tomcat-users&gt;
+</code></pre><p>注：<br>1、pom文件中的server名称和setting文件中的id名称相同<br>2、setting 文件、pom文件和tomcat-users文件的username和password都相同<br>启动tomcat，打开控制台，切换到项目目录下，输入 mvn tomcat7:deploy;<br>打开 <a href="http://localhost:8080/manager/html" target="_blank" rel="external">http://localhost:8080/manager/html</a> 看看项目是否存在了，存在说明成功了。</p>
+</li>
+</ol>
 ]]></content>
     </entry>
     
     <entry>
-      <title><![CDATA[为什么乱码5]]></title>
-      <url>http://yoursite.com/2015/04/08/my-new-post5/</url>
-      <content type="html"><![CDATA[<p>#这里是正文，用markdown写，你可以选择写一段显示在首页的简介后，加上<br><a id="more"></a>#在<!--more-->之前的内容会显示在首页，之后的内容会被隐藏，当游客点击Read more才能看到。</p>
-]]></content>
-    </entry>
-    
-    <entry>
-      <title><![CDATA[为什么乱码6]]></title>
-      <url>http://yoursite.com/2015/04/08/my-new-post6/</url>
-      <content type="html"><![CDATA[<p>#这里是正文，用markdown写，你可以选择写一段显示在首页的简介后，加上<br><a id="more"></a>#在<!--more-->之前的内容会显示在首页，之后的内容会被隐藏，当游客点击Read more才能看到。</p>
-]]></content>
-    </entry>
-    
-    <entry>
-      <title><![CDATA[为什么乱码7]]></title>
-      <url>http://yoursite.com/2015/04/08/my-new-post7/</url>
-      <content type="html"><![CDATA[<p>#这里是正文，用markdown写，你可以选择写一段显示在首页的简介后，加上<br><a id="more"></a>#在<!--more-->之前的内容会显示在首页，之后的内容会被隐藏，当游客点击Read more才能看到。</p>
+      <title><![CDATA[nginx-tomcat8-redis 做集群]]></title>
+      <url>http://hanyahui88.github.io/2015/12/11/nginx-tomcat8-redis/</url>
+      <content type="html"><![CDATA[<ol>
+<li><p>nginx 配置</p>
+<pre><code>upstream localhost {
+    server localhost:8080 weight=1 max_fails=2 fail_timeout=30s;
+    server localhost:8081 weight=1 max_fails=2 fail_timeout=30s;
+}
+server {
+        listen       80;
+        server_name  localhost;
+
+    location / {
+            proxy_connect_timeout   3;  
+            proxy_send_timeout      30;  
+            proxy_read_timeout      30; 
+            proxy_pass http://localhost;
+        }          
+}
+</code></pre><a id="more"></a></li>
+<li><p>tomcat 配置<br>每个tomcat 的context.xml  配置文件 <context> 节点下 添加下面代码</context></p>
+<pre><code>&lt;Manager className=&quot;com.radiadesign.catalina.session.RedisSessionManager&quot; 
+host=&quot;localhost&quot; 
+port=&quot;6379&quot; 
+database=&quot;0&quot;  
+maxInactiveInterval=&quot;60&quot; /&gt;
+</code></pre></li>
+<li>添加 tomcat-redis-session.jar包，jedis-2.7.2.jar   commons-pool2-2.4.1.jar；将这3个包放入tomcat\lib目录下；<br>也可以网上下载 tomcat-redis-session 项目把jedis-2.7.2.jar  和commons-pool2-2.4.1.jar 都编译进去<br>然后把编译后的包放在toomcat\lib中<br></li>
+<li>给每个tomcat首页加上sessionid,访问网页验证，看看sessionId是不是一样的<br></li>
+<li>遇到的错误:<br>错误1：com/radiadesign/catalina/session/RedisSessionHandlerValve : Unsupported major.minor version 52.0。原因:编译的时候jdk版本过高<br>错误2：java.lang.IllegalStateException: Race condition encountered: attempted to load session[23D87414FA0F9520F84869F39B545CDB] which has been created but not yet serialized.原因：客户端请求时传了多个JSESSIONID的原因，手动清除cookie，再次请求，问题解决。</li>
+</ol>
 ]]></content>
     </entry>
     

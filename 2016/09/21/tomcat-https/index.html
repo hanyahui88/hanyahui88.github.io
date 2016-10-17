@@ -86,7 +86,7 @@
 <link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="tomcat,https," />
 
 
 
@@ -102,15 +102,18 @@
 
 
 
-<meta name="description" content="想一夜暴富的程序猿">
-<meta property="og:type" content="website">
-<meta property="og:title" content="alvin blog">
-<meta property="og:url" content="http://hanyahui88.github.io/archives/2015/index.html">
+<meta name="description" content="首先是申请证书，可以用java自带的keytool生成证书">
+<meta property="og:type" content="article">
+<meta property="og:title" content="tomcat 配置https">
+<meta property="og:url" content="http://hanyahui88.github.io/2016/09/21/tomcat-https/index.html">
 <meta property="og:site_name" content="alvin blog">
-<meta property="og:description" content="想一夜暴富的程序猿">
+<meta property="og:description" content="首先是申请证书，可以用java自带的keytool生成证书">
+<meta property="og:image" content="http://hanyahui88.github.io/path/to/20161017135038.png">
+<meta property="og:updated_time" content="2016-10-17T07:17:00.810Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="alvin blog">
-<meta name="twitter:description" content="想一夜暴富的程序猿">
+<meta name="twitter:title" content="tomcat 配置https">
+<meta name="twitter:description" content="首先是申请证书，可以用java自带的keytool生成证书">
+<meta name="twitter:image" content="http://hanyahui88.github.io/path/to/20161017135038.png">
 
 
 
@@ -131,10 +134,10 @@
 
 
 
-  <link rel="canonical" href="http://hanyahui88.github.io/archives/2015/"/>
+  <link rel="canonical" href="http://hanyahui88.github.io/2016/09/21/tomcat-https/"/>
 
 
-  <title> 归档 | alvin blog </title>
+  <title> tomcat 配置https | alvin blog </title>
 </head>
 
 <body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
@@ -165,7 +168,7 @@
     
   
 
-  <div class="container one-collumn sidebar-position-right  page-archive  ">
+  <div class="container one-collumn sidebar-position-right page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="//schema.org/WPHeader">
@@ -286,73 +289,205 @@
           <div id="content" class="content">
             
 
-  <section id="posts" class="posts-collapse">
-    <span class="archive-move-on"></span>
-
-    <span class="archive-page-counter">
-      
-      
-      
-        
-      
-      嗯..! 目前共计 10 篇日志。 继续努力。
-    </span>
-
+  <div id="posts" class="posts-expand">
     
 
-      
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                tomcat 配置https
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-09-21T17:08:14-04:00" content="2016-09-21">
+              2016-09-21
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/部署/" itemprop="url" rel="index">
+                    <span itemprop="name">部署</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/09/21/tomcat-https/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/09/21/tomcat-https/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
       
       
 
       
+        <ol>
+<li>首先是申请证书，可以用java自带的keytool生成证书<br><img src="/path/to/20161017135038.png" alt="keystore"><br><a id="more"></a></li>
+<li><p>找到tomcat目录/conf/server.xml文件</p>
+<p>更改这段代码：</p>
+<p> &lt;–&lt;Connector port=”8443” protocol=”org.apache.coyote.http11.Http11NioProtocol”</p>
+<pre><code>maxThreads=&quot;150&quot; SSLEnabled=&quot;true&quot; scheme=&quot;https&quot; secure=&quot;true&quot;
+clientAuth=&quot;false&quot; sslProtocol=&quot;TLS&quot; /&gt;--&gt;
+</code></pre><p>为：<br></p>
+<p> &lt;Connector port=”8443” protocol=”HTTP/1.1”</p>
+<pre><code>maxThreads=&quot;150&quot; SSLEnabled=&quot;true&quot; scheme=&quot;https&quot; secure=&quot;true&quot;
+clientAuth=&quot;false&quot; sslProtocol=&quot;TLS&quot; 
+keystoreFile=&quot;/.keystore&quot; （keystore文件地址）
+keystorePass=&quot;123456&quot;/&gt;(生成keystore输入的密码)
+</code></pre></li>
+<li>验证<br> 访问<a href="https://localhost:8443" target="_blank" rel="external">https://localhost:8443</a> 验证是否可行</li>
+</ol>
+<p>注：如果希望能通过域名访问，则需要向相关机构申请https证书</p>
+
+      
+    </div>
+
+    <div>
+      
         
-        <div class="collection-title">
-          <h2 class="archive-year motion-element" id="archive-year-2015">2015</h2>
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="/path/to/wechat-reward-image.png" alt="alvin WeChat Pay"/>
+          <p>微信打赏</p>
         </div>
       
       
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="/path/to/alipay-reward-image.png" alt="alvin Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
 
       
+    </div>
 
-  <article class="post post-type-normal" itemscope itemtype="//schema.org/Article">
-    <header class="post-header">
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/tomcat/" rel="tag">#tomcat</a>
+          
+            <a href="/tags/https/" rel="tag">#https</a>
+          
+        </div>
+      
 
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2015/12/11/nginx-tomcat8-redis/" itemprop="url">
-              
-                <span itemprop="name">nginx-tomcat8-redis 做集群</span>
-              
-            </a>
-        
-      </h1>
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/09/18/h5-upload/" rel="next" title="H5 上传文件">
+                <i class="fa fa-chevron-left"></i> H5 上传文件
+              </a>
+            
+          </div>
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2015-12-11T11:54:31-05:00"
-              content="2015-12-11" >
-          12-11
-        </time>
-      </div>
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
 
-    </header>
+      
+      
+    </footer>
   </article>
 
 
 
-    
-
-  </section>
-
-  
-
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
           
 
+  <p>热评文章</p>
+  <div class="ds-top-threads" data-range="weekly" data-num-items="4"></div>
+
 
           
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/09/21/tomcat-https/"
+           data-title="tomcat 配置https" data-url="http://hanyahui88.github.io/2016/09/21/tomcat-https/">
+      </div>
+    
+  </div>
+
 
         </div>
         
@@ -372,8 +507,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel  sidebar-panel-active ">
+      <section class="site-overview sidebar-panel ">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="//schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/haizei.jpg"
@@ -452,6 +596,17 @@
 
       </section>
 
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <p class="post-toc-empty">此文章未包含目录</p>
+            
+          </div>
+        </section>
       
 
     </div>
@@ -542,11 +697,9 @@
 
 
   
-  
-    <script type="text/javascript" id="motion.page.archive">
-      $('.archive-year').velocity('transition.slideLeftIn');
-    </script>
-  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.2"></script>
+
 
 
   

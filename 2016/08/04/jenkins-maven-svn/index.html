@@ -86,7 +86,7 @@
 <link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="jenkins,maven,svn," />
 
 
 
@@ -102,15 +102,29 @@
 
 
 
-<meta name="description" content="想一夜暴富的程序猿">
-<meta property="og:type" content="website">
-<meta property="og:title" content="alvin blog">
-<meta property="og:url" content="http://hanyahui88.github.io/archives/2015/index.html">
+<meta name="description" content="下载jenkins.war 包，放入tomcat中，浏览器中输入localhost:8080/jenkins
+根据提示找到密码，并输入
+安装插件，svn和maven插件 a.在线安装">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用jenkins+maven+svn持续部署">
+<meta property="og:url" content="http://hanyahui88.github.io/2016/08/04/jenkins-maven-svn/index.html">
 <meta property="og:site_name" content="alvin blog">
-<meta property="og:description" content="想一夜暴富的程序猿">
+<meta property="og:description" content="下载jenkins.war 包，放入tomcat中，浏览器中输入localhost:8080/jenkins
+根据提示找到密码，并输入
+安装插件，svn和maven插件 a.在线安装">
+<meta property="og:image" content="http://hanyahui88.github.io/path/to/6631783547769735330.png">
+<meta property="og:image" content="http://hanyahui88.github.io/path/to/6631550451304639277.png">
+<meta property="og:image" content="http://hanyahui88.github.io/path/to/6631505371327906980.png">
+<meta property="og:image" content="http://hanyahui88.github.io/path/to/6631806637513918234.png">
+<meta property="og:image" content="http://hanyahui88.github.io/path/to/6631830826769745627.png">
+<meta property="og:image" content="http://hanyahui88.github.io/path/to/6631639511746493121.png">
+<meta property="og:updated_time" content="2016-10-17T07:17:00.808Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="alvin blog">
-<meta name="twitter:description" content="想一夜暴富的程序猿">
+<meta name="twitter:title" content="使用jenkins+maven+svn持续部署">
+<meta name="twitter:description" content="下载jenkins.war 包，放入tomcat中，浏览器中输入localhost:8080/jenkins
+根据提示找到密码，并输入
+安装插件，svn和maven插件 a.在线安装">
+<meta name="twitter:image" content="http://hanyahui88.github.io/path/to/6631783547769735330.png">
 
 
 
@@ -131,10 +145,10 @@
 
 
 
-  <link rel="canonical" href="http://hanyahui88.github.io/archives/2015/"/>
+  <link rel="canonical" href="http://hanyahui88.github.io/2016/08/04/jenkins-maven-svn/"/>
 
 
-  <title> 归档 | alvin blog </title>
+  <title> 使用jenkins+maven+svn持续部署 | alvin blog </title>
 </head>
 
 <body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
@@ -165,7 +179,7 @@
     
   
 
-  <div class="container one-collumn sidebar-position-right  page-archive  ">
+  <div class="container one-collumn sidebar-position-right page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="//schema.org/WPHeader">
@@ -286,73 +300,201 @@
           <div id="content" class="content">
             
 
-  <section id="posts" class="posts-collapse">
-    <span class="archive-move-on"></span>
-
-    <span class="archive-page-counter">
-      
-      
-      
-        
-      
-      嗯..! 目前共计 10 篇日志。 继续努力。
-    </span>
-
+  <div id="posts" class="posts-expand">
     
 
-      
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                使用jenkins+maven+svn持续部署
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-08-04T16:07:50-04:00" content="2016-08-04">
+              2016-08-04
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/部署/" itemprop="url" rel="index">
+                    <span itemprop="name">部署</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/08/04/jenkins-maven-svn/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/04/jenkins-maven-svn/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
       
       
 
       
+        <ol>
+<li>下载jenkins.war 包，放入tomcat中，浏览器中输入localhost:8080/jenkins</li>
+<li>根据提示找到密码，并输入</li>
+<li>安装插件，svn和maven插件<br><br> a.在线安装<br> <img src="/path/to/6631783547769735330.png" alt="setting"><br><a id="more"></a><br> b. 离线下载，可选网址：<br> <a href="http://mirror.xmission.com/jenkins/plugins" target="_blank" rel="external">http://mirror.xmission.com/jenkins/plugins</a><br> <a href="http://updates.jenkins-ci.org/download/plugins" target="_blank" rel="external">http://updates.jenkins-ci.org/download/plugins</a><br> <a href="https://wiki.jenkins-ci.org/display/JENKINS/Plugins" target="_blank" rel="external">https://wiki.jenkins-ci.org/display/JENKINS/Plugins</a><br> 下载完成后点击选择文件，上传<br><br> <img src="/path/to/6631550451304639277.png" alt="setting"><br><br> c.还可以修改update site <a href="http://mirror.xmission.com/jenkins/updates/current/update-center.json" target="_blank" rel="external">http://mirror.xmission.com/jenkins/updates/current/update-center.json</a></li>
+<li>创建项目<br> a.输入项目名称，选择maven项目，点击ok<br> <img src="/path/to/6631505371327906980.png" alt="setting"><br><br> b.输入svn地址，帐号和密码<br> <img src="/path/to/6631806637513918234.png" alt="setting"><br><br> c.build的时候选择invoke top_level maven targer<br> <img src="/path/to/6631830826769745627.png" alt="setting"><br><br> d:最后点击save 就可以了<br> 项目中pom文件和maven的配置请看:<a href="https://hanyahui88.github.io/2016/08/04/maven-deploy-tomcat/" title="idea-docker">MAVEN自动部署项目到tomcat中</a></li>
+<li>点击项目名称进入详情<br> <img src="/path/to/6631639511746493121.png" alt="setting"><br><br> 点击1 去构建<br> 点击2 去看日志，构建完后，如果项目前面显示的蓝色的球球就是成功了，红的球球就是失败了，可以点击2查看异常</li>
+</ol>
+
+      
+    </div>
+
+    <div>
+      
         
-        <div class="collection-title">
-          <h2 class="archive-year motion-element" id="archive-year-2015">2015</h2>
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="/path/to/wechat-reward-image.png" alt="alvin WeChat Pay"/>
+          <p>微信打赏</p>
         </div>
       
       
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="/path/to/alipay-reward-image.png" alt="alvin Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
 
       
+    </div>
 
-  <article class="post post-type-normal" itemscope itemtype="//schema.org/Article">
-    <header class="post-header">
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/jenkins/" rel="tag">#jenkins</a>
+          
+            <a href="/tags/maven/" rel="tag">#maven</a>
+          
+            <a href="/tags/svn/" rel="tag">#svn</a>
+          
+        </div>
+      
 
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2015/12/11/nginx-tomcat8-redis/" itemprop="url">
-              
-                <span itemprop="name">nginx-tomcat8-redis 做集群</span>
-              
-            </a>
-        
-      </h1>
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/08/04/maven-deploy-tomcat/" rel="next" title="maven自动部署项目到tomcat中">
+                <i class="fa fa-chevron-left"></i> maven自动部署项目到tomcat中
+              </a>
+            
+          </div>
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2015-12-11T11:54:31-05:00"
-              content="2015-12-11" >
-          12-11
-        </time>
-      </div>
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/08/05/word-freemarker/" rel="prev" title="使用freemarker导出word">
+                使用freemarker导出word <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
 
-    </header>
+      
+      
+    </footer>
   </article>
 
 
 
-    
-
-  </section>
-
-  
-
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
           
 
+  <p>热评文章</p>
+  <div class="ds-top-threads" data-range="weekly" data-num-items="4"></div>
+
 
           
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/08/04/jenkins-maven-svn/"
+           data-title="使用jenkins+maven+svn持续部署" data-url="http://hanyahui88.github.io/2016/08/04/jenkins-maven-svn/">
+      </div>
+    
+  </div>
+
 
         </div>
         
@@ -372,8 +514,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel  sidebar-panel-active ">
+      <section class="site-overview sidebar-panel ">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="//schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/haizei.jpg"
@@ -452,6 +603,17 @@
 
       </section>
 
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <p class="post-toc-empty">此文章未包含目录</p>
+            
+          </div>
+        </section>
       
 
     </div>
@@ -542,11 +704,9 @@
 
 
   
-  
-    <script type="text/javascript" id="motion.page.archive">
-      $('.archive-year').velocity('transition.slideLeftIn');
-    </script>
-  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.2"></script>
+
 
 
   
